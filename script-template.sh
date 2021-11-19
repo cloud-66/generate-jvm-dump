@@ -1,15 +1,5 @@
 #!/usr/bin/env bash
 
-set -Eeuo pipefail
-trap cleanup SIGINT SIGTERM ERR EXIT
-
-script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
-
-main() {
-  # script logic
-  echo "Hello, you are in $script_dir"
-}
-
 
 usage() {
   cat <<EOF
@@ -77,14 +67,3 @@ parse_params() {
 
   return 0
 }
-
-parse_params "$@"
-setup_colors
-
-# script logic here
-main "$@"
-
-msg "${RED}Read parameters:${NOFORMAT}"
-msg "- flag: ${flag}"
-msg "- param: ${param}"
-msg "- arguments: ${args[*]-}"
